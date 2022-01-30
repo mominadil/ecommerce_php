@@ -4,6 +4,7 @@
     session_start();
     
 ?>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,7 +36,7 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-        
+
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="margin-left: unset !important;">
             <!-- Left navbar links -->
@@ -45,12 +46,12 @@
             ?>
 
             <!-- Right navbar links -->
-            
+
         </nav>
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        
+
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper" style="margin-left: unset !important;">
