@@ -53,6 +53,9 @@
         <a href="product_page.php" class="nav-link">Product</a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
+        <a href="cart_page.php" class="nav-link">Cart</a>
+    </li>
+    <li class="nav-item d-none d-sm-inline-block">
         <a href="logout.php" class="nav-link">Logout</a>
     </li>
     <?php }else{ ?>

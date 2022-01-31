@@ -67,7 +67,7 @@
                                     class="img-responsive" /><br />
 
                                <?php
-                                   echo session_id();
+                                //    echo session_id();
                                    
                                ?>
 
@@ -80,7 +80,7 @@
 
                                 <input type="hidden" name="hidden_name" value="<?php echo $row["product_name"]; ?>" />
                                 <input type="hidden" name="hidden_id" value="<?php echo $row["id"]; ?>" />
-                                <input type="hidden" name="session_id" value="<?php echo session_id() ?>" />
+                                <!-- <input type="hidden" name="session_id" value="<?php echo session_id() ?>" /> -->
                                 
                                 <input type="hidden" name="hidden_image" value="<?php echo $row["product_image"]; ?>" />
 
