@@ -14,6 +14,9 @@ $rowcount=mysqli_num_rows($result);
 $row = mysqli_fetch_array($result);
 print_r($row);
 $user_id = $row['id'];
+$_SESSION['user_name']=$row['full_name'];
+$_SESSION['user_email']=$row['email'];
+$_SESSION['user_phone_no']=$row['mobile'];
 
 if($rowcount > 0)
 {

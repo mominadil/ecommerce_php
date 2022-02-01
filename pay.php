@@ -3,6 +3,9 @@
 require('config.php');
 require('razorpay-php/Razorpay.php');
 session_start();
+$username=$_SESSION['user_name'];
+$email=$_SESSION['user_email'];
+$contact=$_SESSION['user_phone_no'];
 
 // Create the Razorpay Order
 
@@ -49,13 +52,13 @@ if (isset($_GET['checkout']) and in_array($_GET['checkout'], ['automatic', 'manu
 $data = [
     "key"               => $keyId,
     "amount"            => $amount,
-    "name"              => "DJ Tiesto",
+    "name"              => $username,
     "description"       => "Tron Legacy",
     "image"             => "https://s29.postimg.org/r6dj1g85z/daft_punk.jpg",
     "prefill"           => [
-    "name"              => "Daft Punk",
-    "email"             => "customer@merchant.com",
-    "contact"           => "9999999999",
+    "name"              => $username,
+    "email"             => $email,
+    "contact"           => $contact,
     ],
     "notes"             => [
     "address"           => "Hello World",

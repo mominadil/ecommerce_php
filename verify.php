@@ -3,6 +3,8 @@
 require('config.php');
 
 session_start();
+$user_id=$_SESSION['user_id'];
+include "action_db/connection_db.php";
 
 require('razorpay-php/Razorpay.php');
 use Razorpay\Api\Api;
@@ -38,8 +40,12 @@ if (empty($_POST['razorpay_payment_id']) === false)
 
 if ($success === true)
 {
-    $html = "<p>Your payment was successful</p>
-             <p>Payment ID: {$_POST['razorpay_payment_id']}</p>";
+   $payment_id= $_POST['razorpay_payment_id'];
+    
+    $query="INSERT INTO order_details (register_id,payment_id)VALUES('$user_id','$payment_id')" ;
+    $result=mysqli_query($conn,$query);   
+    $html = "<p>Your payment was successful</p>";
+             header("location:order_placer.php");
 }
 else
 {

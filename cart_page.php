@@ -2,7 +2,8 @@
 <html lang="en">
 <?php
     session_start();
-    
+    $user_id=$_SESSION['user_id'];
+    // print_r($_SESSION);
 ?>
 
 <head>
@@ -63,12 +64,17 @@
                         </tr>
                         <?php
                    include "action_db/connection_db.php";
-                   $query = "SELECT * FROM product_db INNER JOIN cart_db ON product_db.id = cart_db.product_id";
-                   $result = mysqli_query($conn, $query);
-                    if(mysqli_num_rows($result) > 0)
-                    {
-                    while($row = mysqli_fetch_array($result))
-                    {?>
+                    $verify_user="SELECT * FROM cart_db WHERE session_id =  '$user_id'";
+                    $verify_result=mysqli_query($conn,$verify_user);
+                    //  print_r($verify_result);
+                   if (mysqli_num_rows($verify_result)>0) {
+
+                       $query = "SELECT * FROM product_db INNER JOIN cart_db ON product_db.id = cart_db.product_id WHERE cart_db.session_id =  '$user_id' ";
+                       $result = mysqli_query($conn, $query);
+                           if(mysqli_num_rows($result) > 0)
+                           {
+                           while($row = mysqli_fetch_array($result))
+                           {?>
                         <tr class="container">
 
 
@@ -80,28 +86,37 @@
                                     onclick='return checkdelete()'>Delete</a></td>
 
                             <?php
-                            }
-                        }
-                        $count = mysqli_query($conn, "SELECT * FROM product_db INNER JOIN cart_db ON product_db.id = cart_db.product_id  ");
-                        $total = 0;
-                        while($row = mysqli_fetch_assoc($count)) {
-                            $total = $total + ($row["quantity"] * $row["price"]);
-                        }?>
-
-
+                                   }
+                               }
+                               $count = mysqli_query($conn, "SELECT * FROM product_db INNER JOIN cart_db ON product_db.id = cart_db.product_id  ");
+                               $total = 0;
+                               while($row = mysqli_fetch_assoc($count)) {
+                                   $total = $total + ($row["quantity"] * $row["price"]);
+                                    }?>
                             <h4>Total:<?php echo $total ?></h4>
                             <form action="pay.php" method="POST">
                                 <input type="hidden" name="amount" value="<?php echo $total; ?>">
                                 <!-- <input type="hidden" name="currency" value="INR"> -->
-                                <input type="submit" name="buynow" style="margin-top:5px;" class="btn" value="buynow">
+                                <input type="submit" name="buynow" style="margin-top:5px;" class="btn btn-warning" value="buynow">
                             </form>
+                <?php
+                    }
+                   else {
+                       echo "<h4>Please add product in cart";
+                       }
+                     
+                
+                    ?>
+
+
+
                 </div>
             </section>
 
-                   
-                    
 
-    
+
+
+
 
 
 
@@ -118,17 +133,17 @@
                 <!-- Control sidebar content goes here -->
             </aside>
             <!-- /.control-sidebar -->
-    </div>
-    <!-- ./wrapper -->
+        </div>
+        <!-- ./wrapper -->
 
-    <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="dist/js/demo.js"></script>
+        <!-- jQuery -->
+        <script src="plugins/jquery/jquery.min.js"></script>
+        <!-- Bootstrap 4 -->
+        <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="dist/js/adminlte.min.js"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script src="dist/js/demo.js"></script>
 </body>
 
 </html>
