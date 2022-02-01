@@ -2,6 +2,8 @@
 <html lang="en">
 <?php
     session_start();
+
+        
     
 ?>
 <head>
@@ -66,8 +68,9 @@
                                 <img src="images/<?php echo $row["product_image"]; ?>" width="500" height="500"
                                     class="img-responsive" /><br />
 
+
                                <?php
-                                //    echo session_id();
+                                   echo session_id();
                                    
                                ?>
 
