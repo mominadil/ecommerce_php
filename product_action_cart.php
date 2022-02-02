@@ -1,7 +1,7 @@
 <?php
 session_start();
 include "action_db/connection_db.php";
-$product_id=$_POST['hidden_id']=$_SESSION['product_id'];
+$product_id=$_POST['hidden_id'];
 $quantity=$_POST['quantity'];
 $user_id=$_SESSION['user_id'];
 
