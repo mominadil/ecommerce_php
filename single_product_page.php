@@ -3,8 +3,7 @@
 <?php
     session_start();
 
-        
-    
+    $pro_id=$_GET['pro_id'];
 ?>
 
 <head>
@@ -56,7 +55,7 @@
                 <div class="card">
                     <?php
                     include ('action_db/connection_db.php');
-                    $query = "SELECT * FROM product_db ORDER BY id ASC";
+                    $query = "SELECT * FROM product_db WHERE id ='$pro_id'";
                     $result = mysqli_query($conn, $query);
                     if(mysqli_num_rows($result) > 0)
                     {
@@ -72,13 +71,21 @@
 
                                 <h4 class="text-info"><?php echo $row["product_name"]; ?></h4>
 
-                                <h4 class="text-danger">₹ <?php echo $row["price"]; ?></h4><br>
+                                <h4 class="text-danger">₹ <?php echo $row["price"]; ?></h4>
+
+
+                                <input type="text" name="quantity" value="1" class="form-control" /><br>
+                                <input type="hidden" name="hidden_name" value="<?php echo $row["product_name"]; ?>" />
+                                <input type="hidden" name="hidden_id" value="<?php echo $row["id"]; ?>" />
+                                <!-- <input type="hidden" name="session_id" value="<?php echo session_id() ?>" /> -->
                                 
-                                <a href="single_product_page.php?pro_id=<?php echo $row['id'] ?>">
-                                    <h4 class="btn btn-primary">
-                                        Quick View
-                                    </h4>
-                                </a>
+                                <input type="hidden" name="hidden_image" value="<?php echo $row["product_image"]; ?>" />
+
+                                <input type="hidden" name="hidden_price" value="<?php echo $row["price"]; ?>" />
+
+
+                                <input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-primary"
+                                    value="Add to Cart  ">
                                 <?php  ?>
                             </div>
                         </form>

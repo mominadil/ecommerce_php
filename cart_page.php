@@ -81,7 +81,7 @@
                             <td><?php echo $row['product_name']; ?></td>
                             <td><?php echo $row['quantity']; ?></td>
                             <td><?php echo $row['price']; ?></td>
-                            <td><?php echo $row['price']; ?></td>
+                            <td><?php echo $row['quantity']*$row['price']; ?></td>
                             <td><a href="delete_cart.php?id=<?php echo $row['product_id']; ?>"
                                     onclick='return checkdelete()'>Delete</a></td>
 
@@ -96,10 +96,10 @@
                             <h4>Total:<?php echo $total ?></h4>
                             <form action="pay.php" method="POST">
                                 <input type="hidden" name="amount" value="<?php echo $total; ?>">
-                                <!-- <input type="hidden" name="currency" value="INR"> -->
-                                <input type="submit" name="buynow" style="margin-top:5px;" class="btn btn-warning" value="buynow">
+                                <input type="submit" name="buynow" style="margin-top:5px;" class="btn btn-warning"
+                                    value="buynow">
                             </form>
-                <?php
+                            <?php
                     }
                    else {
                        echo "<h4>Please add product in cart";
@@ -109,8 +109,16 @@
                     ?>
 
 
-
                 </div>
+
+                <footer class="main-footer" style="margin-left: unset !important;">
+                    <div class="float-right d-none d-sm-block">
+                        <b>Version</b> 3.2.0-rc
+                    </div>
+                    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All
+                    rights
+                    reserved.
+                </footer>
             </section>
 
 
@@ -120,18 +128,9 @@
 
 
 
-            <footer class="main-footer" style="margin-left: unset !important;">
-                <div class="float-right d-none d-sm-block">
-                    <b>Version</b> 3.2.0-rc
-                </div>
-                <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
-                reserved.
-            </footer>
 
             <!-- Control Sidebar -->
-            <aside class="control-sidebar control-sidebar-dark">
-                <!-- Control sidebar content goes here -->
-            </aside>
+
             <!-- /.control-sidebar -->
         </div>
         <!-- ./wrapper -->
